@@ -1,0 +1,20 @@
+{
+  "name": "mentorshipmatch",
+  "version": "1.0.0",
+  "description": "Student-to-Professional Mentorship Platform (BPA V04)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --no-warnings server.js"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.5",
+    "express-session": "^1.19.0",
+    "helmet": "^8.3.0"
+  },
+  "engines": {
+    "node": ">=22.5"
+  }
+}
