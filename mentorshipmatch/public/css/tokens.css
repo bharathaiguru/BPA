@@ -1,0 +1,130 @@
+/* =========================================================
+   tokens.css — design tokens (spec §3–5)
+   Colors, type, spacing, radius. Themes and Settings change
+   these variables; components only ever use the variables.
+   Every text/background pair is verified by tests/contrast.js.
+   ========================================================= */
+
+/* ----- Self-hosted fonts (SIL Open Font License) ----- */
+@font-face { font-family: 'Public Sans'; src: url('/assets/fonts/public-sans-latin-wght-normal.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Fraunces'; src: url('/assets/fonts/fraunces-latin-600-normal.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Fraunces'; src: url('/assets/fonts/fraunces-latin-600-italic.woff2') format('woff2'); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Atkinson Hyperlegible'; src: url('/assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Atkinson Hyperlegible'; src: url('/assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'OpenDyslexic'; src: url('/assets/fonts/opendyslexic-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'OpenDyslexic'; src: url('/assets/fonts/opendyslexic-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+
+/* ----- Classic theme (default): Deep Forest, Warm Paper, Burnt Copper ----- */
+:root {
+  --bg: #F8F7F3;            /* Warm Paper */
+  --surface: #FFFFFF;       /* Canvas White */
+  --surface-2: #F1EFE9;     /* subtle panels */
+  --sage: #E5EDE7;          /* Pale Sage: selected items, highlights */
+  --ink: #202823;           /* Charcoal Green */
+  --muted: #59655E;         /* Slate Sage */
+  --brand: #174C3C;         /* Deep Forest */
+  --brand-hover: #0F3A2D;
+  --on-brand: #FFFFFF;
+  --accent: #A64B24;        /* Burnt Copper (editorial accents only) */
+  --danger: #A82219;
+  --on-danger: #FFFFFF;
+  --line: #E3E0D8;          /* decorative dividers */
+  --input-border: #7E8A83;  /* ≥3:1 against surfaces */
+  --focus: #A64B24;
+  --hero-band: #174C3C;
+  --on-band: #FFFFFF;
+  /* status (spec §3.3) — separate from categories */
+  --ok-bg: #E4F1E8; --ok-ink: #22663F;
+  --warn-bg: #FDF0D2; --warn-ink: #7A5300;
+  --info-bg: #E7EFF9; --info-ink: #254F83;
+  --bad-bg: #FBE4E2; --bad-ink: #A82219;
+  --cat-bg: #EBE8E3; --cat-ink: #57524B;
+  --star: #B7791F;
+  --shadow-sm: 0 1px 2px rgba(32, 40, 35, .06);
+  --shadow-md: 0 2px 6px rgba(32, 40, 35, .06), 0 12px 28px rgba(32, 40, 35, .08);
+
+  /* type (spec §4) — rem so text-size settings and browser zoom scale everything */
+  --font-ui: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --fs-display: clamp(2.25rem, 1.35rem + 3.4vw, 4rem);
+  --fs-public-h: clamp(1.75rem, 1.4rem + 1.3vw, 2.5rem);
+  --fs-app-title: clamp(1.625rem, 1.5rem + .5vw, 2rem);
+  --fs-section: clamp(1.25rem, 1.17rem + .35vw, 1.5rem);
+  --fs-card: 1.125rem;
+  --fs-body: 1rem;
+  --fs-small: .875rem;
+  --fs-meta: .8125rem;
+  --lh-body: 1.6;
+  --lh-tight: 1.2;
+
+  /* spacing (spec §5.1) — 4px base; --density shrinks it in Compact layout */
+  --density: 1;
+  --s1: calc(.25rem * var(--density));
+  --s2: calc(.5rem * var(--density));
+  --s3: calc(.75rem * var(--density));
+  --s4: calc(1rem * var(--density));
+  --s6: calc(1.5rem * var(--density));
+  --s8: calc(2rem * var(--density));
+  --s12: calc(3rem * var(--density));
+  --s16: calc(4rem * var(--density));
+  --s24: calc(6rem * var(--density));
+
+  /* geometry (spec §5.2) */
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-pill: 999px;
+  --target: 44px;           /* comfortable touch target */
+  --focus-width: 3px;
+  --sidebar-w: 256px;
+  color-scheme: light;
+}
+
+/* ----- Ocean theme ----- */
+html[data-theme="ocean"] {
+  --bg: #F4F7FA; --surface: #FFFFFF; --surface-2: #E9EFF5; --sage: #E1EBF5;
+  --ink: #1B2733; --muted: #4F5F70;
+  --brand: #1E4A73; --brand-hover: #14385A; --hero-band: #1E4A73;
+  --accent: #8A5A00; --focus: #8A5A00;
+  --line: #D9E1EA; --input-border: #76879A;
+}
+
+/* ----- Dark theme ----- */
+html[data-theme="dark"] {
+  --bg: #121614; --surface: #1A201D; --surface-2: #222925; --sage: #24362E;
+  --ink: #E8EEEA; --muted: #A7B4AD;
+  --brand: #84D2B2; --brand-hover: #A3E0C7; --on-brand: #0B1F17; --hero-band: #1F3B30;
+  --accent: #F0A27A; --focus: #F0A27A;
+  --danger: #F2A49C; --on-danger: #2A0B08;
+  --line: #2E3632; --input-border: #7A8780;
+  --ok-bg: #1D3427; --ok-ink: #9BDDB4;
+  --warn-bg: #3A2F17; --warn-ink: #F2CF7F;
+  --info-bg: #1C2B3E; --info-ink: #A9C8F0;
+  --bad-bg: #3D1F1D; --bad-ink: #F5A8A0;
+  --cat-bg: #2C2B28; --cat-ink: #D3CEC6;
+  --star: #E8B04B;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4); --shadow-md: 0 8px 24px rgba(0, 0, 0, .45);
+  color-scheme: dark;
+}
+
+/* ----- High-contrast theme ----- */
+html[data-theme="contrast"] {
+  --bg: #FFFFFF; --surface: #FFFFFF; --surface-2: #FFFFFF; --sage: #FFF4B8;
+  --ink: #000000; --muted: #1F1F1F;
+  --brand: #003A8C; --brand-hover: #00255C; --on-brand: #FFFFFF; --hero-band: #000000;
+  --accent: #6B2A00; --focus: #000000;
+  --danger: #8A0000; --on-danger: #FFFFFF;
+  --line: #000000; --input-border: #000000;
+  --ok-bg: #FFFFFF; --ok-ink: #0B4F1F; --warn-bg: #FFFFFF; --warn-ink: #5C3D00;
+  --info-bg: #FFFFFF; --info-ink: #002E6E; --bad-bg: #FFFFFF; --bad-ink: #8A0000;
+  --cat-bg: #FFFFFF; --cat-ink: #000000;
+  --star: #000000; --shadow-sm: none; --shadow-md: none; --focus-width: 4px;
+}
+
+/* ----- Settings-driven modifiers (prefs.js sets these attributes on <html>) ----- */
+html[data-text="sm"] { font-size: 93.75%; }
+html[data-text="lg"] { font-size: 112.5%; }
+html[data-text="xl"] { font-size: 125%; }
+html[data-spacing="compact"] { --density: .75; }
+html[data-targets="large"] { --target: 52px; }
+html[data-font="hyperlegible"] { --font-ui: 'Atkinson Hyperlegible', system-ui, sans-serif; --font-display: 'Atkinson Hyperlegible', system-ui, sans-serif; }
+html[data-font="dyslexic"] { --font-ui: 'OpenDyslexic', 'Comic Sans MS', sans-serif; --font-display: 'OpenDyslexic', 'Comic Sans MS', sans-serif; --lh-body: 1.8; }
+html[data-lines="relaxed"] { --lh-body: 1.95; }
+html[data-focus="strong"] { --focus-width: 5px; }
