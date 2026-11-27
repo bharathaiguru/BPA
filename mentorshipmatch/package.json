@@ -1,10 +1,13 @@
 {
   "name": "mentorshipmatch",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Student-to-Professional Mentorship Platform (BPA V04)",
   "main": "server.js",
   "scripts": {
-    "start": "node --no-warnings server.js"
+    "start": "node --no-warnings server.js",
+    "start:production": "node --no-warnings server.js --production",
+    "test": "node --no-warnings --test tests/api.test.js",
+    "test:contrast": "node tests/contrast.js"
   },
   "license": "UNLICENSED",
   "dependencies": {

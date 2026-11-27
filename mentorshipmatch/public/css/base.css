@@ -1,0 +1,67 @@
+/* =========================================================
+   base.css — element defaults, typography classes, utilities
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; min-height: 100vh; display: flex; flex-direction: column;
+  font-family: var(--font-ui); font-size: var(--fs-body); line-height: var(--lh-body);
+  color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased;
+}
+main { flex: 1; outline: none; }
+img, svg { max-width: 100%; }
+a { color: var(--brand); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+p { margin: 0 0 var(--s4); }
+ul, ol { margin: 0 0 var(--s4); padding-left: 1.25rem; }
+hr { border: 0; border-top: 1px solid var(--line); margin: var(--s6) 0; }
+:focus-visible { outline: var(--focus-width) solid var(--focus); outline-offset: 2px; }
+::selection { background: var(--sage); color: var(--ink); }
+
+/* ----- Typography (spec §4): semantic headings, reusable size classes ----- */
+h1, h2, h3, h4 { margin: 0 0 var(--s3); line-height: var(--lh-tight); font-weight: 650; color: var(--ink); letter-spacing: -.01em; text-wrap: balance; }
+.t-display { font-family: var(--font-display); font-size: var(--fs-display); font-weight: 600; letter-spacing: -.02em; line-height: 1.08; }
+.t-display em { font-style: italic; color: var(--brand); }
+.t-public-h { font-family: var(--font-display); font-size: var(--fs-public-h); font-weight: 600; letter-spacing: -.015em; }
+.t-app-title { font-size: var(--fs-app-title); font-weight: 650; }
+.t-section { font-size: var(--fs-section); font-weight: 600; }
+.t-card { font-size: var(--fs-card); font-weight: 600; letter-spacing: 0; }
+.t-small { font-size: var(--fs-small); }
+.t-meta { font-size: var(--fs-meta); color: var(--muted); }
+.t-muted { color: var(--muted); }
+.t-lead { font-size: 1.125rem; color: var(--muted); max-width: 38em; }
+.eyebrow { display: inline-block; font-size: var(--fs-meta); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--s3); }
+.prose { max-width: 44rem; }
+.prose h2 { margin-top: var(--s8); }
+.prose li { margin-bottom: var(--s2); }
+
+/* ----- Utilities ----- */
+.container { width: min(1200px, 100% - 2 * var(--s6)); margin-inline: auto; }
+.narrow { width: min(760px, 100% - 2 * var(--s6)); margin-inline: auto; }
+.sr-only { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.stack > * + * { margin-top: var(--s4); }
+.stack-lg > * + * { margin-top: var(--s8); }
+.row { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+.row-between { display: flex; align-items: center; justify-content: space-between; gap: var(--s4); flex-wrap: wrap; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s6); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s6); }
+.mt-0 { margin-top: 0 !important; } .mb-0 { margin-bottom: 0 !important; }
+.nowrap { white-space: nowrap; }
+.icon { width: 1.15em; height: 1.15em; flex: none; vertical-align: -.2em; }
+.icon-lg { width: 1.5rem; height: 1.5rem; }
+
+.skip-link { position: absolute; left: var(--s4); top: -4rem; z-index: 500; background: var(--brand); color: var(--on-brand); padding: var(--s3) var(--s4); border-radius: var(--r-sm); font-weight: 700; text-decoration: none; }
+.skip-link:focus { top: var(--s4); }
+
+/* Reduced motion: the user's Settings choice OR the operating-system preference */
+html[data-motion="reduce"] *, html[data-motion="reduce"] *::before, html[data-motion="reduce"] *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+html[data-links="underline"] a { text-decoration: underline !important; }
+
+@media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+.icon.filled { fill: currentColor; }
+/* Headings receive focus after navigation for screen readers; no visible ring is needed there. */
+h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, main:focus { outline: none; }
+.link-button { background: none; border: 0; padding: 0; font: inherit; color: var(--ink); cursor: pointer; text-align: left; }
+.link-button:hover { text-decoration: underline; }
